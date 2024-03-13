@@ -33,7 +33,6 @@ public class DockerTest {
         driver.findElement(By.id("state")).sendKeys("Rabbit");
         driver.findElement(By.id("zipCode")).sendKeys("420");
         
-        // Assuming the purchase form has been correctly filled out
         driver.findElement(By.cssSelector(".btn-primary")).click();
     }
 }
