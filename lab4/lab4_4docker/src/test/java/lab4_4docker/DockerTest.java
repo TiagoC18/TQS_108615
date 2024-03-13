@@ -13,26 +13,25 @@ import io.github.bonigarcia.seljup.BrowserType;
 @ExtendWith(SeleniumJupiter.class)
 public class DockerTest {
     @Test
-    public void testChromeInDocker(@DockerBrowser(type = BrowserType.CHROME) WebDriver driver) {
+    public void test(@DockerBrowser(type = BrowserType.CHROME) WebDriver driver) {
         driver.get("https://blazedemo.com/");
-        driver.manage().window().setSize(new Dimension(1600, 900));
+        driver.manage().window().setSize(new Dimension(775, 695));
         driver.findElement(By.name("fromPort")).click();
-        WebElement fromPortDropdown = driver.findElement(By.name("fromPort"));
-        fromPortDropdown.findElement(By.xpath("//option[. = 'Portland']")).click();
-
+        {
+            WebElement dropdown = driver.findElement(By.name("fromPort"));
+            dropdown.findElement(By.xpath("//option[. = 'Philadelphia']")).click();
+        }
+        driver.findElement(By.cssSelector(".form-inline:nth-child(1) > option:nth-child(2)")).click();
         driver.findElement(By.name("toPort")).click();
-        WebElement toPortDropdown = driver.findElement(By.name("toPort"));
-        toPortDropdown.findElement(By.xpath("//option[. = 'Cairo']")).click();
-
+        {
+            WebElement dropdown = driver.findElement(By.name("toPort"));
+            dropdown.findElement(By.xpath("//option[. = 'Rome']")).click();
+        }
+        driver.findElement(By.cssSelector(".form-inline:nth-child(4) > option:nth-child(2)")).click();
         driver.findElement(By.cssSelector(".btn-primary")).click();
-        driver.findElement(By.cssSelector("tr:nth-child(3) .btn")).click();
-        
-        driver.findElement(By.id("inputName")).sendKeys("Tiago Cruz");
-        driver.findElement(By.id("address")).sendKeys("420 Duck Street");
-        driver.findElement(By.id("city")).sendKeys("Lutontown");
-        driver.findElement(By.id("state")).sendKeys("Rabbit");
-        driver.findElement(By.id("zipCode")).sendKeys("420");
-        
+        driver.findElement(By.cssSelector("tr:nth-child(5) .btn")).click();
+        driver.findElement(By.id("inputName")).click();
+        driver.findElement(By.id("inputName")).sendKeys("Cruz");
         driver.findElement(By.cssSelector(".btn-primary")).click();
     }
 }

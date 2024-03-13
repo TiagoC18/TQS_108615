@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: lab4_4docker.DockerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.817 s <<< FAILURE! - in lab4_4docker.DockerTest
-lab4_4docker.DockerTest.testChromeInDocker(WebDriver)  Time elapsed: 1.8 s  <<< ERROR!
-org.junit.jupiter.api.extension.ParameterResolutionException: Failed to resolve parameter [org.openqa.selenium.WebDriver arg0] in method [public void lab4_4docker.DockerTest.testChromeInDocker(org.openqa.selenium.WebDriver)]: There was an error creating WebDriver object for Chrome
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.634 s <<< FAILURE! - in lab4_4docker.DockerTest
+lab4_4docker.DockerTest.test(WebDriver)  Time elapsed: 1.616 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: Failed to resolve parameter [org.openqa.selenium.WebDriver arg0] in method [public void lab4_4docker.DockerTest.test(org.openqa.selenium.WebDriver)]: There was an error creating WebDriver object for Chrome
 	at org.junit.jupiter.engine.execution.ParameterResolutionUtils.resolveParameter(ParameterResolutionUtils.java:159)
 	at org.junit.jupiter.engine.execution.ParameterResolutionUtils.resolveParameters(ParameterResolutionUtils.java:103)
 	at org.junit.jupiter.engine.execution.ParameterResolutionUtils.resolveParameters(ParameterResolutionUtils.java:64)
