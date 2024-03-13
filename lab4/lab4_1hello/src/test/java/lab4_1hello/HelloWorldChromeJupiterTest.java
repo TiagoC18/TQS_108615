@@ -31,14 +31,12 @@ class HelloWorldChromeJupiterTest {
 
     @Test
     void googleHomePageTest() {
-        // Exercise
         String sutUrl = "https://www.google.com";
         driver.get(sutUrl); 
         String title = driver.getTitle(); 
         log.debug("The title of {} is {}", sutUrl, title); 
 
-        // Verify
-        assertThat(title).isEqualTo("Google"); // Assuming "Google" is the expected title
+        assertThat(title).isEqualTo("Google"); 
     }
 
     @AfterEach
