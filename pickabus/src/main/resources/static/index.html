@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: auto; padding: 20px; }
+        .search-section, .results-section { margin-bottom: 20px; }
+        .trip-item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+        label, .currency-section { display: block; margin-bottom: 5px; }
+        input, select, button { width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-section">
+            <h2>Search Bus Connections</h2>
+            <form id="searchForm">
+                <label for="origin">Origin:</label>
+                <select id="origin" name="origin" required>
+                    <option value="">Please select</option>
+                    <!-- Dynamically populate these options based on available cities -->
+                </select>
+
+                <label for="destination">Destination:</label>
+                <select id="destination" name="destination" required>
+                    <option value="">Please select</option>
+                    <!-- Dynamically populate these options based on available cities -->
+                </select>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="results-section hidden" id="resultsSection">
+            <h2>Available Trips</h2>
+            <!-- Currency selection will be dynamically added here -->
+            <div id="currencySelection" class="currency-section hidden"></div>
+            <div id="tripsList"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const cities = await fetchAvailableCities();
+            populateCityOptions(cities, 'origin');
+            populateCityOptions(cities, 'destination');
+            // Get date from options
+            
+
+        });
+        
+        async function fetchAvailableCities() {
+            try {
+                const url = `/api/trips/cities`;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Failed to fetch cities');
+                return await response.json();
+            } catch (error) {
+                console.error("Error fetching cities:", error);
+                return [];
+            }
+        }
+        
+        function populateCityOptions(cities, elementId) {
+            const selectElement = document.getElementById(elementId);
+            cities.forEach(city => {
+                const option = new Option(city, city);
+                selectElement.add(option);
+            });
+        }
+
+
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetchAvailableTrips();
+            displayCurrencySelection();
+        });
+        
+        async function fetchAvailableTrips() {
+            const origin = document.getElementById('origin').value;
+            const destination = document.getElementById('destination').value;
+            
+            // Adjust the URL to where your API is hosted, if necessary
+            const url = `/api/trips/search?origin=${origin}&destination=${destination}`;
+            
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Failed to fetch trips');
+                const trips = await response.json();
+                
+                displayTrips(trips);
+            } catch (error) {
+                console.error("Error fetching trips:", error);
+            }
+        }
+        
+        
+        function displayTrips(trips) {
+            const tripsList = document.getElementById('tripsList');
+            tripsList.innerHTML = ''; // Clear previous results
+            
+            if (trips.length === 0) {
+                tripsList.innerHTML = '<p>No trips available for the selected route.</p>';
+                return;
+            }
+            
+            trips.forEach(trip => {
+                const tripItem = document.createElement('div');
+                tripItem.classList.add('trip-item');
+                tripItem.innerHTML = `
+                    <div>Trip ${trip.id}: ${trip.origin} to ${trip.destination} - ${trip.departureTime}</div>
+                    <div>Seats remaining: ${trip.seats}</div>
+                    <div>Price: <span class="price" data-id="${trip.id}" data-euro="${trip.price}">${trip.price} EUR</span></div>
+                    <button onclick='selectTrip(${JSON.stringify(trip)})'>Select</button>
+                `;
+                tripsList.appendChild(tripItem);
+            });
+        
+            document.getElementById('resultsSection').classList.remove('hidden');
+        }
+
+        function displayCurrencySelection() {
+            const currencySelectionDiv = document.getElementById('currencySelection');
+            currencySelectionDiv.innerHTML = `
+                <label for="currency">Currency:</label>
+                <select id="currency" name="currency" onchange="updatePricesBasedOnCurrency()">
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="GBP">GBP</option>
+                </select>
+            `;
+            currencySelectionDiv.classList.remove('hidden');
+        }
+        
+        function selectTrip(trip) {
+            const currency = document.getElementById('currency').value;
+        
+            // Fetch the displayed price which includes the currency conversion
+            const priceElement = document.querySelector(`.price[data-id="${trip.id}"]`);
+            let price = priceElement.innerText;
+            // Extract the numerical part of the price (assuming the format is "123.45 EUR")
+            let matches = price.match(/(\d+(\.\d+)?)/);
+            if (matches) {
+                price = matches[0]; // The first match contains the numerical value of the price
+            }
+        
+            // Create query parameters including the dynamically updated price
+            const queryParameters = new URLSearchParams({
+                tripId: trip.id,
+                origin: trip.origin,
+                destination: trip.destination,
+                departureTime: trip.departureTime,
+                seats: trip.seats,
+                price: price, 
+                currency: currency
+            }).toString();
+            
+            window.location.href = `booking.html?${queryParameters}`;
+        }
+        
+                
+
+        async function convertCurrency(fromCurrency, toCurrency, amount) {
+            try {
+                // Note: Adjust the endpoint as necessary to match your application's routing
+                const url = `/api/currency/convert?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Failed to fetch conversion rate');
+                const data = await response.json();
+                // Assuming the API returns the conversion result directly
+                return data;
+            } catch (error) {
+                console.error("Error during currency conversion:", error);
+                return null; // Return null or appropriate fallback in case of error
+            }
+        }
+        
+        async function updatePricesBasedOnCurrency() {
+            const selectedCurrency = document.getElementById('currency').value;
+            const prices = document.querySelectorAll('.price');
+            
+            for (const price of prices) {
+                const euroPrice = parseFloat(price.getAttribute('data-euro'));
+                // Call the convertCurrency function to get the converted amount
+                const convertedAmount = await convertCurrency('EUR', selectedCurrency, euroPrice);
+                if (convertedAmount) {
+                    // Update the text content with the converted amount and the selected currency
+                    price.textContent = `${convertedAmount.toFixed(2)} ${selectedCurrency}`;
+                }
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Bus Ticket Booking</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: auto; padding: 20px; }
+        .trip-details { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select, button { width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Trip Details Section -->
+        <div id="tripDetails" class="trip-details">
+            <!-- Selected Trip Details will be inserted here -->
+        </div>
+
+        <h2>Passenger Details</h2>
+        <form id="bookingForm">
+            <input type="hidden" id="tripId" name="tripId">
+            
+            <label for="passengerName">Passenger Name:</label>
+            <input type="text" id="passengerName" name="passengerName" required>
+            
+            <label for="passengerEmail">Passenger Email:</label>
+            <input type="email" id="passengerEmail" name="passengerEmail" required>
+            
+            <label for="numberOfTickets">Number of Tickets:</label>
+            <select id="numberOfTickets" name="numberOfTickets" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            
+            <input type="hidden" id="currency" name="currency">
+
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Parse the URL parameters to get booking details
+            const urlParams = new URLSearchParams(window.location.search);
+            const tripId = urlParams.get('tripId');
+            const currency = urlParams.get('currency');
+            const origin = urlParams.get('origin');
+            const destination = urlParams.get('destination');
+            const departureTime = urlParams.get('departureTime');
+            const seats = urlParams.get('seats');
+            const price = urlParams.get('price');
+    
+            // Display trip details
+            document.getElementById('tripDetails').innerHTML = `
+                <h2>Selected Trip Details</h2>
+                <p>Origin: ${origin}</p>
+                <p>Destination: ${destination}</p>
+                <p>Departure Time: ${departureTime}</p>
+                <p>Seats Remaining: ${seats}</p>
+                <p>Price: ${price} ${currency}</p>
+            `;
+    
+            // Populate hidden fields
+            document.getElementById('tripId').value = tripId;
+            document.getElementById('currency').value = currency;
+    
+            document.getElementById('bookingForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+    
+                // Construct reservation object from form data
+                const reservationData = {
+                    tripId: parseInt(tripId),
+                    passengerName: document.getElementById('passengerName').value,
+                    passengerEmail: document.getElementById('passengerEmail').value,
+                    numberOfTickets: parseInt(document.getElementById('numberOfTickets').value),
+                };
+    
+                // POST request to create a new reservation
+                try {
+                    const response = await fetch('/api/reservations', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(reservationData),
+                    });
+    
+                    if (!response.ok) throw new Error('Failed to create reservation');
+    
+                    const reservationResponse = await response.json();
+                    alert(`Booking successful. Your reservation token: ${reservationResponse.token}`);
+                } catch (error) {
+                    console.error("Error creating reservation:", error);
+                    alert('There was an error processing your booking. Please try again.');
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,347 @@
+{
+  "id": "aa5032b5-2d4a-4d57-abbc-e4cb9527da36",
+  "version": "2.0",
+  "name": "pickabus",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "90ba19ae-5e45-49e5-9860-a93073e37dbd",
+    "name": "pickabus",
+    "commands": [{
+      "id": "aae11008-40d9-4fe8-95ba-4dc42e6cd4e7",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cf303d76-0269-4ac7-bdb9-30ce8276fe7c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "550x692",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f0efbff3-e33f-4565-8d4c-9a793e72d1a7",
+      "comment": "",
+      "command": "click",
+      "target": "id=origin",
+      "targets": [
+        ["id=origin", "id"],
+        ["name=origin", "name"],
+        ["css=#origin", "css:finder"],
+        ["xpath=//select[@id='origin']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2f2ee95f-7bf1-41ff-9774-a4461ba2aeed",
+      "comment": "",
+      "command": "click",
+      "target": "id=origin",
+      "targets": [
+        ["id=origin", "id"],
+        ["name=origin", "name"],
+        ["css=#origin", "css:finder"],
+        ["xpath=//select[@id='origin']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a15590a0-3880-4bec-897e-d204bf46c79a",
+      "comment": "",
+      "command": "select",
+      "target": "id=origin",
+      "targets": [],
+      "value": "label=Berlin"
+    }, {
+      "id": "111924e8-2578-4726-bbe1-67168aa2e881",
+      "comment": "",
+      "command": "click",
+      "target": "css=#origin > option:nth-child(3)",
+      "targets": [
+        ["css=#origin > option:nth-child(3)", "css:finder"],
+        ["xpath=//option[@value='Berlin']", "xpath:attributes"],
+        ["xpath=//select[@id='origin']/option[3]", "xpath:idRelative"],
+        ["xpath=//option[3]", "xpath:position"],
+        ["xpath=//option[contains(.,'Berlin')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "89080b7b-50ef-4521-a22a-094b09c29e26",
+      "comment": "",
+      "command": "click",
+      "target": "id=destination",
+      "targets": [
+        ["id=destination", "id"],
+        ["name=destination", "name"],
+        ["css=#destination", "css:finder"],
+        ["xpath=//select[@id='destination']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/select[2]", "xpath:idRelative"],
+        ["xpath=//select[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30d22030-100c-4eae-a984-0055f1772cbe",
+      "comment": "",
+      "command": "select",
+      "target": "id=destination",
+      "targets": [],
+      "value": "label=Lisbon"
+    }, {
+      "id": "92ea44c9-6e57-47d0-a909-6d08a34bf540",
+      "comment": "",
+      "command": "click",
+      "target": "css=#destination > option:nth-child(5)",
+      "targets": [
+        ["css=#destination > option:nth-child(5)", "css:finder"],
+        ["xpath=(//option[@value='Lisbon'])[2]", "xpath:attributes"],
+        ["xpath=//select[@id='destination']/option[5]", "xpath:idRelative"],
+        ["xpath=//select[2]/option[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1c987139-e004-4366-abc7-010cb5f9dd6c",
+      "comment": "",
+      "command": "click",
+      "target": "id=date",
+      "targets": [
+        ["id=date", "id"],
+        ["name=date", "name"],
+        ["css=#date", "css:finder"],
+        ["xpath=//input[@id='date']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd657484-f015-4691-8c5c-7809db433394",
+      "comment": "",
+      "command": "click",
+      "target": "id=date",
+      "targets": [
+        ["id=date", "id"],
+        ["name=date", "name"],
+        ["css=#date", "css:finder"],
+        ["xpath=//input[@id='date']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "23d35632-3018-4f6b-898d-3c61096e472b",
+      "comment": "",
+      "command": "type",
+      "target": "id=date",
+      "targets": [
+        ["id=date", "id"],
+        ["name=date", "name"],
+        ["css=#date", "css:finder"],
+        ["xpath=//input[@id='date']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "2024-04-24"
+    }, {
+      "id": "748edfd9-16e7-4915-a37a-aeaa69340e9e",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "749b0bd0-d6d7-4ef1-ba4f-e213e4ddea39",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "99a6ac7a-2330-4d9b-ad4c-5c3606da0555",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=button:nth-child(7)",
+      "targets": [
+        ["css=button:nth-child(7)", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='searchForm']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "13d490cf-6cbd-4965-be8b-bcf8f0772875",
+      "comment": "",
+      "command": "click",
+      "target": "id=currency",
+      "targets": [
+        ["id=currency", "id"],
+        ["name=currency", "name"],
+        ["css=#currency", "css:finder"],
+        ["xpath=//select[@id='currency']", "xpath:attributes"],
+        ["xpath=//div[@id='currencySelection']/select", "xpath:idRelative"],
+        ["xpath=//div/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b284955f-f960-406e-8422-f4bf918be48c",
+      "comment": "",
+      "command": "select",
+      "target": "id=currency",
+      "targets": [],
+      "value": "label=USD"
+    }, {
+      "id": "9497000d-814e-4503-b88c-f3348c7a8f92",
+      "comment": "",
+      "command": "click",
+      "target": "css=#currency > option:nth-child(2)",
+      "targets": [
+        ["css=#currency > option:nth-child(2)", "css:finder"],
+        ["xpath=//option[@value='USD']", "xpath:attributes"],
+        ["xpath=//select[@id='currency']/option[2]", "xpath:idRelative"],
+        ["xpath=//div/select/option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'USD')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7b94bbd3-4260-438a-a673-368d7877347b",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(4)",
+      "targets": [
+        ["css=button:nth-child(4)", "css:finder"],
+        ["xpath=//button[@onclick='selectTrip({\"id\":9,\"origin\":\"Berlin\",\"destination\":\"Lisbon\",\"departureTime\":\"10:00 PM\",\"price\":140,\"seats\":40})']", "xpath:attributes"],
+        ["xpath=//div[@id='tripsList']/div/button", "xpath:idRelative"],
+        ["xpath=//div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Select')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b88dfa8c-e0c6-4713-8066-8cceead9a710",
+      "comment": "",
+      "command": "click",
+      "target": "id=passengerName",
+      "targets": [
+        ["id=passengerName", "id"],
+        ["name=passengerName", "name"],
+        ["css=#passengerName", "css:finder"],
+        ["xpath=//input[@id='passengerName']", "xpath:attributes"],
+        ["xpath=//form[@id='bookingForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "68dbe2f2-12d3-4218-a7af-83d78009e664",
+      "comment": "",
+      "command": "type",
+      "target": "id=passengerName",
+      "targets": [
+        ["id=passengerName", "id"],
+        ["name=passengerName", "name"],
+        ["css=#passengerName", "css:finder"],
+        ["xpath=//input[@id='passengerName']", "xpath:attributes"],
+        ["xpath=//form[@id='bookingForm']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "Jose"
+    }, {
+      "id": "f78b90c7-3fa7-4472-a512-4a621059a0d6",
+      "comment": "",
+      "command": "click",
+      "target": "id=passengerEmail",
+      "targets": [
+        ["id=passengerEmail", "id"],
+        ["name=passengerEmail", "name"],
+        ["css=#passengerEmail", "css:finder"],
+        ["xpath=//input[@id='passengerEmail']", "xpath:attributes"],
+        ["xpath=//form[@id='bookingForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95ac0326-7c70-455b-9c69-6f71aec2358b",
+      "comment": "",
+      "command": "type",
+      "target": "id=passengerEmail",
+      "targets": [
+        ["id=passengerEmail", "id"],
+        ["name=passengerEmail", "name"],
+        ["css=#passengerEmail", "css:finder"],
+        ["xpath=//input[@id='passengerEmail']", "xpath:attributes"],
+        ["xpath=//form[@id='bookingForm']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "jose@gmail.com"
+    }, {
+      "id": "61df4450-a7b8-49dc-b5ff-7dfab2fade3e",
+      "comment": "",
+      "command": "click",
+      "target": "id=numberOfTickets",
+      "targets": [
+        ["id=numberOfTickets", "id"],
+        ["name=numberOfTickets", "name"],
+        ["css=#numberOfTickets", "css:finder"],
+        ["xpath=//select[@id='numberOfTickets']", "xpath:attributes"],
+        ["xpath=//form[@id='bookingForm']/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd0e13df-671b-4563-bd54-510c5a12e5a3",
+      "comment": "",
+      "command": "select",
+      "target": "id=numberOfTickets",
+      "targets": [],
+      "value": "label=3"
+    }, {
+      "id": "001fb774-2b70-4ac9-9b45-9774784b835e",
+      "comment": "",
+      "command": "click",
+      "target": "css=option:nth-child(3)",
+      "targets": [
+        ["css=option:nth-child(3)", "css:finder"],
+        ["xpath=//option[@value='3']", "xpath:attributes"],
+        ["xpath=//select[@id='numberOfTickets']/option[3]", "xpath:idRelative"],
+        ["xpath=//option[3]", "xpath:position"],
+        ["xpath=//option[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d024f666-09e9-4255-bb1c-45927132120c",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form[@id='bookingForm']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Book Now')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "2137f774-90ce-4dff-87b1-510ca8f834fa",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
